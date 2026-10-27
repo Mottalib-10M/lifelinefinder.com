@@ -1,0 +1,106 @@
+---
+/**
+ * Home (pillar page). The eligibility checker first, then the 2026 income table and its mini-tool, what
+ * Lifeline pays, the approved companies by ZIP code, the application timeline, Lifeline in numbers, the
+ * end of the ACP, every page of the site, why the data changes the answer, and the sources. Every figure
+ * is read from params-2026.json and the USAC data through the helpers.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Tool from './Tool.astro';
+import Clamp from './Clamp.astro';
+import Sources from './Sources.astro';
+import { route } from '../i18n/routes';
+import { PAGES } from '../lib/guides';
+import { GROUPS_ORDER, groupLabel } from '../i18n/nav';
+import { helpers } from '../lib/helpers';
+import { t } from '../i18n/ui';
+import { LAST_UPDATED, AUTHOR_NAME } from '../data/site-config';
+import { displayDate } from '../lib/format';
+import { faqSchema, webApplicationSchema, websiteSchema, organizationSchema } from '../lib/seo';
+const lang = 'en';
+const h = helpers(lang, true);
+const cards = (g: (typeof GROUPS_ORDER)[number]) => PAGES.filter((p) => p.group === g).map((p) => ({ href: route(p.id, lang), name: p.en.nav, text: p.en.card }));
+const link = (id: string, text: string) => h.a(id, text);
+const top5 = ['CA', 'NY', 'MI', 'PA', 'PR'];
+
+const title = 'Lifeline Eligibility 2026: Free Phone and Internet Check';
+const description = 'Lifeline eligibility 2026 in seconds: household size, income and benefits give your answer, the $9.25 monthly discount and the approved companies by ZIP code.';
+const faqs = [
+  { q: 'Who runs Lifeline, and who is this site?', a: 'Lifeline is a program of the Federal Communications Commission, administered by the Universal Service Administrative Company (USAC), which runs the National Verifier where applications are decided. This site is neither: it is an independent publisher, Radif Partners, that turns the published rules and USAC’s public data into checkers. It takes no application and is paid by no phone company.' },
+  { q: 'How much income is too much for Lifeline in 2026?', a: `More than 135% of the 2026 federal poverty guideline for your household size, unless someone in the household gets a qualifying benefit. In the 48 states and DC that is ${h.lim(1)} for one person, ${h.lim(2)} for two and ${h.lim(4)} for four, plus ${h.money(h.P.income135.contiguous.add)} per extra person. Alaska and Hawaii have higher limits, starting at ${h.lim(1, 'alaska')} and ${h.lim(1, 'hawaii')}.` },
+  { q: 'Can I get Lifeline on both my cell phone and my home internet?', a: 'No. The benefit is one discount per household, applied to one service: a mobile plan, a home phone line, home internet, or a bundle of voice and data. If you hold Lifeline with two companies, you must choose one and drop the other; the national database flags duplicates and the extra benefit is removed.' },
+  { q: 'I lost my ACP discount in 2024. Is Lifeline the same thing?', a: `No, but it is what remains. The Affordable Connectivity Program paid up to ${h.money(h.ACP.monthly)} a month and ended on ${h.date(h.ACP.ended)} when its funding ran out. Lifeline is older, permanent, and smaller at ${h.support('broadband')} a month, with a stricter income limit of 135% of the poverty guidelines. Many ACP households qualify for Lifeline through SNAP or Medicaid.` },
+  { q: 'Does Lifeline count as a public benefit for immigration purposes?', a: 'Lifeline is a discount on a phone or internet bill funded through the Universal Service Fund, not cash assistance. The FCC rules set no citizenship test: eligibility rests on household income or on a qualifying benefit, and identity is checked through the last digits of a Social Security number or other documents. For an individual immigration question, an accredited legal adviser is the right person to ask.' },
+  { q: 'Why does the checker ask nothing about my name or address?', a: 'Because the rules do not need them to estimate eligibility. Household size, gross income, the benefits received and whether the home is on Tribal lands decide the answer. The official application does need your identity and address, but only the National Verifier, your state process in Oregon or Texas, or an approved company should collect them.' },
+  { q: 'Is there a waiting list or a limited number of Lifeline phones?', a: `No waiting list is set in the rules: every eligible household may enroll. The program has a yearly budget, indexed by the FCC at ${h.money(h.BUDGET.y2026)} for 2026 and ${h.money(h.BUDGET.y2027)} for 2027, but a budget is not a cap on enrollment. Phones, though, are a company’s own offer, and a company may run out of a model.` },
+];
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webApplicationSchema({ name: 'Lifeline eligibility checker', description, path: route('home', lang), lang }), faqSchema(faqs, lang)];
+const resume = `Lifeline is the federal program behind the “free government phone”: a discount of up to ${h.support('broadband')} a month on a phone, internet or bundled plan from an approved company, and up to ${h.money(h.S.tribalMax)} a month on qualifying Tribal lands. In 2026 a household qualifies when its gross income is at or below 135% of the federal poverty guidelines, ${h.lim(1)} a year for one person, ${h.lim(3)} for three and ${h.lim(5)} for five in the 48 states and DC, or when someone in it receives SNAP, Medicaid, Supplemental Security Income, Federal Public Housing Assistance or a Veterans or Survivors Pension. One benefit is allowed per household, it must be renewed every year, and a free plan must be used at least once every ${h.R.nonUsageDays} days. In ${h.subsMonth}, USAC data show ${h.num(h.subsTotal)} households claimed. The checker above applies those rules to your household and tells you where to apply, without asking who you are.`;
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={jsonLd} faqs={faqs} breadcrumbs={[]}>
+  <header class="mb-3">
+    <h1 class="mt-0 text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">Lifeline eligibility checker 2026</h1>
+    <p class="mt-1 text-xs font-medium text-navy-600" data-independant>{t(lang).independent}</p>
+    <p class="mt-2 text-base text-navy-700 sm:text-lg">Four answers about your household, and you know whether the free phone or internet discount is yours.</p>
+  </header>
+  <div data-outil class="mb-4"><Tool tool={{ kind: 'elig', props: { state: 'CA', size: 3, income: 30000, program: 'none' } }} primary={true} seedKey="home" /></div>
+  <Clamp text={resume} id="clamp-home" lang={lang} class="mb-3" />
+  <p class="mb-8 text-sm text-navy-600">Rules and figures checked on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-US')}</time> · {AUTHOR_NAME} · <a href={route('method', lang)} class="underline hover:text-navy-900">How the answer is worked out</a> · <a href={route('about', lang)} class="underline hover:text-navy-900">About this site</a></p>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>The 2026 income limits, household by household</h2>
+    <p set:html={`The income test is the one most people stumble on, because it is written as a percentage of a federal table that changes every January. HHS published the 2026 poverty guidelines in January: ${h.fpg(1)} for one person in the 48 states and DC, plus ${h.money(h.FPG.contiguous.add)} for each additional person. Lifeline’s ceiling is 135% of that figure, and USAC publishes the result rounded to the dollar. Alaska and Hawaii have their own guidelines, higher because living costs are higher there; Puerto Rico, the Virgin Islands, Guam, American Samoa and the Northern Mariana Islands use the 48-state figures.`} />
+    <Fragment set:html={h.limitTable(8, `Lifeline income limits for 2026, gross yearly income of the whole household, from the ${h.src('usacEligibility', 'USAC income table')} based on the ${h.src('hhsFpg', 'HHS 2026 poverty guidelines')}.`)} />
+    <p set:html={`Two details change the answer more than people expect. First, the figure is gross income: wages before taxes and deductions, Social Security, unemployment, child support, pensions, for every member of the household. Second, the household is the economic unit, not the address: under ${h.src('cfr400', '47 CFR 54.400')} it is everyone living together who shares income and expenses, so roommates who keep separate budgets are separate households, while an adult with little income supported by another is part of that person’s household. Type your own figures here to see where you stand:`} />
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:limit' }} idPrefix="h1" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p set:html={`If you are over the line, look at the benefits route before giving up. A household that receives SNAP, Medicaid, SSI, public housing assistance or a veterans pension qualifies whatever its income, and many working families get Medicaid or SNAP for their children. The ${link('lifeline-income-limits', 'income limits page')} explains what counts as income and which documents prove it.`} />
+
+    <h2>What Lifeline pays, and what it does not</h2>
+    <p set:html={`Lifeline is a monthly discount paid to the company, which must pass it on to you in full. Under ${h.src('cfr403', '47 CFR 54.403')}, the standard amount is ${h.support('broadband')} a month on a plan that meets the broadband minimum service standard, whether a mobile plan with data, home internet or a bundle. A voice-only plan earns ${h.support('voice')}: the FCC had scheduled the end of that support, but its Wireline Competition Bureau paused the phase-out on ${h.date(h.MSS.waiverDate)} and the ${h.support('voice')} remains available through ${h.date(h.S.voiceOnlyUntil)}. Residents of qualifying Tribal lands get up to ${h.money(h.S.tribalExtra)} more, for a total of up to ${h.money(h.S.tribalMax)}.`} />
+    <p set:html={`A plan must reach minimum standards for the company to be paid. Since the ${h.src('fccMssNotice', 'FCC public notice of July 29, 2026')}, a mobile plan must include ${h.MSS.mobileVoiceMinutes} voice minutes to count as voice and ${h.MSS.mobileDataGB} GB of data a month to count as broadband, and home internet must offer ${h.MSS.fixedDown}/${h.MSS.fixedUp} Mbps with ${h.num(h.MSS.fixedDataGB)} GB a month. These standards continue until ${h.date(h.MSS.until)}, while the FCC weighs changes proposed in its rulemaking of ${h.date(h.MSS.nprmDate)}.`} />
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:benefit' }} idPrefix="h2" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p set:html={`What Lifeline never pays for is the phone. The FCC says it plainly on its ${h.src('fccLifelineArchive', 'Lifeline consumer page')}: it does not subsidize any hardware. Phones handed out with Lifeline plans are the company’s commercial offer. That is why advertisements for a “free iPhone from the government” deserve a second look, as the ${link('free-iphone-government', 'free iPhone page')} explains with the arithmetic.`} />
+
+    <h2>Approved companies near you</h2>
+    <p set:html={`You can only receive Lifeline from an eligible telecommunications carrier designated in your state. USAC publishes, as open data in the public domain, the list behind its “Companies Near Me” tool: each company, its type of service and every ZIP code where it is designated. This site reads that list, ${h.num(h.providersRows)} company and ZIP rows on ${h.providersReadAt}, and shows it neutrally: sorted by the number of ZIP codes covered, with the customer line and the website written as text. Pick your state and type your ZIP code; the code stays in your browser.`} />
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'providers', props: { state: 'CA' } }} idPrefix="h3" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p set:html={`A company appearing in the list is designated to offer Lifeline there; it does not mean every plan or phone is available at your address. Mobile companies cover whole states, home phone and internet companies cover the areas of their network. The ${link('free-government-phone-providers', 'companies page')} explains how to compare offers without giving your details to several of them.`} />
+
+    <h2>From application to renewal</h2>
+    <p set:html={`The application follows the same path everywhere except Oregon and Texas, which run their own process. You apply on the National Verifier, online, by mail or with a company’s agent in person; it checks your identity, your address and your benefit or income against government databases, and asks for documents only if a check fails. Then you choose a company, which enrolls you. A year later the benefit is checked again. The timeline below uses the official delays published by USAC; change the date to yours.`} />
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'steps' }} idPrefix="h4" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p set:html={`Which benefits the National Verifier confirms automatically depends on the state. Medicaid, public housing and veterans pensions are checked through federal connections everywhere USAC lists; SNAP is checked automatically in some states only, such as Florida, Georgia and Pennsylvania, and needs a document in others, such as California and New York. The ${link('lifeline-documents', 'documents checklist')} lists what each route requires, and the ${link('how-to-get-a-free-government-phone', 'step-by-step guide')} walks through the application.`} />
+
+    <h2>Lifeline in numbers</h2>
+    <p set:html={`USAC also publishes, month by month, how many subscribers each company claimed. For ${h.subsMonth}, the latest month with nearly complete claims when this site read the data on ${h.subsReadAt}, the total was ${h.num(h.subsTotal)} households. Five places account for a large share of them:`} />
+    <Fragment set:html={h.table(['State', 'Households claimed', 'Of which Tribal benefit', 'Companies listed'], top5.map((s) => [h.stateName(s), h.subs(s), h.subsTribal(s), h.companyCount(s)]), `Subscribers claimed for ${h.subsMonth} support, from ${h.src('usacDisbursements', 'USAC Lifeline Disbursements')} (late claims can still be added); companies from ${h.src('usacCompanies', 'USAC Companies Near Me')}.`, ['l', 'r', 'r', 'r'])} />
+    <p set:html={`California’s lead comes partly from its own program, California LifeLine, which adds a state discount on top of the federal one and accepts more benefits, such as WIC and the school lunch program. The ${link('lifeline-by-state', 'state-by-state page')} gives the figures for every state, and the pages for ${link('free-government-phone-california', 'California')}, ${link('free-government-phone-texas', 'Texas')}, ${link('free-government-phone-florida', 'Florida')} and ${link('free-government-phone-new-york', 'New York')} go into their own rules.`} />
+
+    <h2>After the ACP: what is left</h2>
+    <p set:html={`From 2021 to 2024 the Affordable Connectivity Program paid up to ${h.money(h.ACP.monthly)} a month toward internet service, ${h.money(h.ACP.tribal)} on Tribal lands, and a one-time ${h.money(h.ACP.device)} toward a laptop or tablet. It stopped taking new households on ${h.date(h.ACP.enrollmentFreeze)}, April 2024 was its last fully funded month, and it ended on ${h.date(h.ACP.ended)} because Congress did not add funding, as ${h.src('usacAcp', 'USAC records')}. Lifeline was never part of that ending: it is funded by the Universal Service Fund and continues. The ${link('affordable-connectivity-program', 'ACP page')} and the ${link('lifeline-vs-acp', 'Lifeline versus ACP comparison')} show what the change costs a household and what to do now.`} />
+
+    <h2>Every page of the site</h2>
+  </div>
+  <div class="not-prose grid gap-6 sm:grid-cols-2 lg:grid-cols-4" data-sommaire>
+    {GROUPS_ORDER.map((g) => (
+      <section><h3 class="mb-2 text-lg font-semibold text-navy-900">{groupLabel(g)}</h3><ul class="space-y-2 text-sm">{cards(g).map((c) => <li><a href={c.href} class="font-medium text-accent-700 underline">{c.name}</a><span class="block text-navy-700">{c.text}</span></li>)}</ul></section>
+    ))}
+  </div>
+  <div class="prose prose-slate mt-8 max-w-none">
+    <h2>Why reading the rules yourself changes the answer</h2>
+    <p set:html={`Most pages that answer “free government phone” belong to companies that enroll subscribers, and they ask for your name, address and the last digits of your Social Security number before telling you anything. The rules do not need any of that to say whether you qualify. They need four facts, and they are public: the eligibility test of ${h.src('cfr409', '47 CFR 54.409')}, the household definition of 54.400, the support amounts of 54.403 and the income table that USAC publishes each year. This site reads them at the source, in the electronic Code of Federal Regulations, on USAC’s pages and in its open data, and gives you the result before you decide whom to trust with your details.`} />
+    <p>The same approach shows what a single company’s page cannot. A company lists its own plans; USAC’s data list every designated company for your ZIP code. A company says “you may qualify”; the checker says by which route and by how many dollars your income sits under or over the line. A company applies for you; the result here tells you whether your state checks your benefit automatically or whether you should have a copy of your letter ready.</p>
+
+    <h2>How this site works</h2>
+    <p set:html={`The checkers run in your browser. Nothing you type, not your income, not your ZIP code, is sent or stored; the only files your browser downloads are this site’s pages and, when you pick a state in the company finder, the public list for that state. The site takes no application, collects no contact details, links to no company and is paid by none. The ${link('method', 'method page')} explains each calculation and its limits, and the sources below are those the figures were read on, on ${h.date(h.P.retrieved_at)}. The official decision on your application always belongs to the National Verifier, or to your state in Oregon and Texas.`} />
+    <Sources lang={lang} keys={['cfr409', 'cfr400', 'cfr403', 'cfr408', 'usacEligibility', 'usacMss', 'hhsFpg', 'fccMssNotice', 'fccWaiver', 'usacCompanies', 'usacDisbursements', 'usacAcp']} />
+  </div>
+</PageLayout>

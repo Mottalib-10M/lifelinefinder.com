@@ -1,0 +1,27 @@
+# Relève mensuelle des données ouvertes de l'USAC : opérateurs agréés par État et code postal (kjtb-4uf7)
+# et abonnés déclarés par État (tfxa-gt3x, mois de soutien d'il y a quatre mois, les déclarations tardives
+# complétant les mois récents). Ne tourne qu'une fois le dépôt créé. Si la liste des opérateurs a changé
+# (code 2), le job échoue sans rien publier : une personne relit l'écart et lance le script à la main.
+name: update-data
+on:
+  schedule:
+    - cron: '23 6 3 * *'   # le 3 de chaque mois, 06:23 UTC
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/update-data.py --month "$(date -u -d "$(date -u +%Y-%m-01) -4 months" +%Y-%m)"
+      - name: Commit the refreshed data
+        run: |
+          git config user.name "Radif Partners"
+          git config user.email "amradif@gmail.com"
+          git add src/data/providers.json src/data/subscribers.json src/data/state-counts.json public/data/zip
+          git diff --cached --quiet || git commit -m "Relevé des données USAC $(date -u +%F)"
+          git push

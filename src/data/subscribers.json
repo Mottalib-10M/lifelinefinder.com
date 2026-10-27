@@ -1,0 +1,231 @@
+{
+"read_at": "2026-10-27",
+"support_month": "2026-06",
+"dataset": "tfxa-gt3x",
+"states": {
+"AK": {
+"total": 18828,
+"tribal": 18509
+},
+"AL": {
+"total": 99718,
+"tribal": 6
+},
+"AR": {
+"total": 62319,
+"tribal": 0
+},
+"AS": {
+"total": 2584,
+"tribal": 0
+},
+"AZ": {
+"total": 125376,
+"tribal": 29135
+},
+"CA": {
+"total": 1528835,
+"tribal": 1421
+},
+"CO": {
+"total": 81363,
+"tribal": 68
+},
+"CT": {
+"total": 33535,
+"tribal": 0
+},
+"DC": {
+"total": 10439,
+"tribal": 0
+},
+"DE": {
+"total": 7317,
+"tribal": 0
+},
+"FL": {
+"total": 282624,
+"tribal": 4970
+},
+"GA": {
+"total": 226175,
+"tribal": 0
+},
+"GU": {
+"total": 276,
+"tribal": 0
+},
+"HI": {
+"total": 13176,
+"tribal": 1009
+},
+"IA": {
+"total": 48863,
+"tribal": 51
+},
+"ID": {
+"total": 13035,
+"tribal": 297
+},
+"IL": {
+"total": 177583,
+"tribal": 0
+},
+"IN": {
+"total": 119045,
+"tribal": 5
+},
+"KS": {
+"total": 13705,
+"tribal": 16
+},
+"KY": {
+"total": 178293,
+"tribal": 0
+},
+"LA": {
+"total": 147590,
+"tribal": 20
+},
+"MA": {
+"total": 64937,
+"tribal": 0
+},
+"MD": {
+"total": 115003,
+"tribal": 0
+},
+"ME": {
+"total": 16314,
+"tribal": 64
+},
+"MI": {
+"total": 389361,
+"tribal": 4632
+},
+"MN": {
+"total": 78082,
+"tribal": 2407
+},
+"MO": {
+"total": 122131,
+"tribal": 5
+},
+"MP": {
+"total": 1324,
+"tribal": 0
+},
+"MS": {
+"total": 87235,
+"tribal": 223
+},
+"MT": {
+"total": 6439,
+"tribal": 2029
+},
+"NC": {
+"total": 92124,
+"tribal": 10
+},
+"ND": {
+"total": 8039,
+"tribal": 1644
+},
+"NE": {
+"total": 11724,
+"tribal": 438
+},
+"NH": {
+"total": 5661,
+"tribal": 0
+},
+"NJ": {
+"total": 117889,
+"tribal": 0
+},
+"NM": {
+"total": 40635,
+"tribal": 16837
+},
+"NV": {
+"total": 83211,
+"tribal": 4403
+},
+"NY": {
+"total": 861266,
+"tribal": 1119
+},
+"OH": {
+"total": 253774,
+"tribal": 0
+},
+"OK": {
+"total": 208965,
+"tribal": 194013
+},
+"OR": {
+"total": 26647,
+"tribal": 200
+},
+"PA": {
+"total": 379174,
+"tribal": 0
+},
+"PR": {
+"total": 374061,
+"tribal": 0
+},
+"RI": {
+"total": 19232,
+"tribal": 0
+},
+"SC": {
+"total": 110328,
+"tribal": 39
+},
+"SD": {
+"total": 7701,
+"tribal": 3695
+},
+"TN": {
+"total": 131480,
+"tribal": 2
+},
+"TX": {
+"total": 267627,
+"tribal": 0
+},
+"UT": {
+"total": 30272,
+"tribal": 1031
+},
+"VA": {
+"total": 200402,
+"tribal": 90
+},
+"VI": {
+"total": 234,
+"tribal": 0
+},
+"VT": {
+"total": 7166,
+"tribal": 0
+},
+"WA": {
+"total": 135207,
+"tribal": 26959
+},
+"WI": {
+"total": 118417,
+"tribal": 3505
+},
+"WV": {
+"total": 77659,
+"tribal": 0
+},
+"WY": {
+"total": 1462,
+"tribal": 142
+}
+}
+}

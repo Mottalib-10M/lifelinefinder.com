@@ -1,0 +1,21 @@
+{
+ "name": "US Lifeline",
+ "short_name": "US Lifeline",
+ "description": "Do you qualify for a free government phone? Household size, income and benefits give a Lifeline answer in seconds, with 2026 income limits and the approved companies in your state.",
+ "start_url": "/en/",
+ "display": "standalone",
+ "background_color": "#ffffff",
+ "theme_color": "#166534",
+ "icons": [
+  {
+   "src": "/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}

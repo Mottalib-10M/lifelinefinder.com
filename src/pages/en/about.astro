@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate } from '../../lib/format';
+import { PAGES } from '../../lib/guides';
+const lang = 'en';
+const n = PAGES.length + 1;
+---
+<PageLayout title="Radif Partners, publisher of US Lifeline: who we are" description="Who publishes US Lifeline, where every income limit, amount and company listing comes from, what the tools do with what you type and what the site never does." lang={lang} jsonLd={[organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><p class="kicker">About</p><h1 class="mt-0 text-3xl font-bold text-navy-900 md:text-4xl">Who is behind {SITE_NAMES[lang]}</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>{SITE_NAMES[lang]} is published by {AUTHOR_NAME}, a company that builds free tools on public data. This site is for households that need a phone or internet line and keep hearing about a “free government phone”: it answers whether they qualify for Lifeline, what the benefit is worth and where the application really goes, before anyone asks them for personal details.</p>
+    <h2>What the site does</h2>
+    <p>It applies the federal rules of 47 CFR Part 54 to a state, a household size, an income and a benefit, and returns the answer with the 2026 limit and the margin. It lists the companies approved in each state and ZIP code from USAC open data, without ranking or links, computes the recertification calendar, checks whether a plan meets the minimum service standards and explains what replaced the Affordable Connectivity Program. Everything is free, needs no account, and what you type stays in your browser.</p>
+    <h2>Where the figures come from</h2>
+    <p>From the electronic Code of Federal Regulations, FCC orders and notices, USAC pages and open data, the HHS poverty guidelines and state commission publications. Every page links to the sources behind it, and the <a href={route('method', lang)}>method page</a> explains every computation.</p>
+    <h2>What we are not</h2>
+    <p>We are not the FCC, USAC, the National Verifier, a state agency or a phone company. We cannot take, check, speed up or approve an application, and we never ask for a Social Security number. The site uses no official seal or logo.</p>
+    <h2>How the site is paid for</h2>
+    <p>The site sells nothing, enrolls no one, takes no commission, collects no contact details and has no affiliate link to any company. If advertising is added one day, it will never sit inside a tool and cannot use what you type, which never leaves your browser.</p>
+    <h2>Tell us when something is wrong</h2>
+    <p>Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the page and the figure. The <a href={route('editorial', lang)}>editorial policy</a> explains how a correction is made and dated. The site has {n} pages of guides and tools.</p>
+    <p class="text-sm text-navy-600">Figures last checked on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-US')}</time>.</p>
+  </div>
+</PageLayout>

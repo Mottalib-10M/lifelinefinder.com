@@ -1,0 +1,779 @@
+{
+  "year": 2026,
+  "retrieved_at": "2026-10-27",
+  "fpg": {
+    "year": 2026,
+    "published": "January 2026",
+    "contiguous": {
+      "base": [
+        15960,
+        21640,
+        27320,
+        33000,
+        38680,
+        44360,
+        50040,
+        55720
+      ],
+      "add": 5680
+    },
+    "alaska": {
+      "base": [
+        19950,
+        27050,
+        34150,
+        41250,
+        48350,
+        55450,
+        62550,
+        69650
+      ],
+      "add": 7100
+    },
+    "hawaii": {
+      "base": [
+        18360,
+        24890,
+        31420,
+        37950,
+        44480,
+        51010,
+        57540,
+        64070
+      ],
+      "add": 6530
+    }
+  },
+  "income135": {
+    "note": "USAC table of 135% of the 2026 Federal Poverty Guidelines (gross annual household income)",
+    "contiguous": {
+      "base": [
+        21546,
+        29214,
+        36882,
+        44550,
+        52218,
+        59886,
+        67554,
+        75222
+      ],
+      "add": 7668
+    },
+    "alaska": {
+      "base": [
+        26933,
+        36518,
+        46103,
+        55688,
+        65273,
+        74858,
+        84443,
+        94028
+      ],
+      "add": 9585
+    },
+    "hawaii": {
+      "base": [
+        24786,
+        33602,
+        42417,
+        51233,
+        60048,
+        68864,
+        77679,
+        86495
+      ],
+      "add": 8816
+    }
+  },
+  "support": {
+    "broadband": 9.25,
+    "voiceOnly": 5.25,
+    "voiceOnlyUntil": "2027-11-30",
+    "tribalExtra": 25,
+    "tribalMax": 34.25,
+    "tribalVoiceMax": 30.25,
+    "linkUpMax": 100,
+    "linkUpDeferredMax": 200,
+    "survivor": 9.25,
+    "survivorMonths": 6,
+    "survivorIncomePct": 200
+  },
+  "mss": {
+    "mobileVoiceMinutes": 1000,
+    "mobileDataGB": 4.5,
+    "mobileSpeed": "3G",
+    "fixedDown": 25,
+    "fixedUp": 3,
+    "fixedDataGB": 1280,
+    "until": "2027-12-01",
+    "waiverDate": "2026-07-01",
+    "noticeDate": "2026-07-29",
+    "nprmDate": "2026-02-23"
+  },
+  "budget": {
+    "y2026": 2976503538,
+    "y2027": 3053892630
+  },
+  "rules": {
+    "recertWindowDays": 60,
+    "nonUsageDays": 30,
+    "cureDays": 15,
+    "deEnrollBusinessDays": 5,
+    "terminationNoticeDays": 30,
+    "subscriberRequestBusinessDays": 2,
+    "docMonths": 12,
+    "payStubMonths": 3,
+    "minAge": 18,
+    "mailReviewBusinessDays": [
+      7,
+      10
+    ],
+    "supportCenterPhone": "1-800-234-9473",
+    "fraudTipLine": "1-855-455-8477",
+    "optOutStates": [
+      "OR",
+      "TX"
+    ],
+    "continuedEligibilityDays": 30,
+    "moveNoticeDays": 30,
+    "changeNoticeDays": 30
+  },
+  "acp": {
+    "monthly": 30,
+    "tribal": 75,
+    "device": 100,
+    "deviceCopayMin": 10,
+    "deviceCopayMax": 50,
+    "enrollmentFreeze": "2024-02-08",
+    "lastFullMonth": "2024-04",
+    "ended": "2024-06-01"
+  },
+  "ca": {
+    "incomeFrom": "2026-06-01",
+    "incomeTo": "2027-05-31",
+    "base": [
+      24600,
+      33300,
+      42100,
+      50800
+    ],
+    "add": 8700,
+    "discount": 19,
+    "connection": 39,
+    "decision": "2026-10-08",
+    "newSubsidy": 20,
+    "tiersGB": [
+      8,
+      15,
+      20
+    ],
+    "freezes": [
+      "24 hours",
+      "60 days",
+      "90 days"
+    ],
+    "federalExtraGB": 4.5,
+    "activation": 15,
+    "households": 1732901,
+    "householdsYear": "FY 2024-25"
+  },
+  "tx": {
+    "administrator": "Texas Lifeline administrator for the Public Utility Commission of Texas",
+    "formIncomePct": 135,
+    "moveNoticeDays": 30,
+    "archivedOn": "2026-09-30"
+  },
+  "nv": {
+    "AL": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "AK": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "AS": {
+      "auto": [
+        "fpha",
+        "vets"
+      ]
+    },
+    "AZ": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "tribalTanf",
+        "vets"
+      ]
+    },
+    "AR": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "CA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "CO": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "CT": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "DE": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "DC": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "FL": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "GA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "GU": {
+      "auto": [
+        "fpha",
+        "vets"
+      ]
+    },
+    "HI": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "ID": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "IL": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "IN": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "IA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "KS": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "KY": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "LA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ],
+      "unclear": [
+        "snap"
+      ]
+    },
+    "ME": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "MD": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "MA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ],
+      "unclear": [
+        "snap"
+      ]
+    },
+    "MI": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "ssi",
+        "vets"
+      ]
+    },
+    "MN": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "MS": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "MO": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "MT": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "NE": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "NV": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "NH": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "NJ": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "NM": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "NY": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "NC": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "ND": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "MP": {
+      "auto": [
+        "fpha",
+        "vets"
+      ]
+    },
+    "OH": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "OK": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "PA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "PR": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "RI": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "SC": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "SD": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "TN": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "UT": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "VT": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "VA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "VI": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "WA": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "snap",
+        "vets"
+      ]
+    },
+    "WV": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    },
+    "WI": {
+      "auto": [
+        "fpha",
+        "income",
+        "medicaid",
+        "snap",
+        "ssi",
+        "vets"
+      ]
+    },
+    "WY": {
+      "auto": [
+        "fpha",
+        "medicaid",
+        "vets"
+      ]
+    }
+  },
+  "sources": {
+    "cfr409": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.409",
+      "label": {
+        "en": "47 CFR 54.409, consumer qualification for Lifeline (eCFR)"
+      }
+    },
+    "cfr400": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.400",
+      "label": {
+        "en": "47 CFR 54.400, Lifeline definitions: household, income, Tribal lands (eCFR)"
+      }
+    },
+    "cfr403": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.403",
+      "label": {
+        "en": "47 CFR 54.403, Lifeline support amount (eCFR)"
+      }
+    },
+    "cfr405": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.405",
+      "label": {
+        "en": "47 CFR 54.405, carrier obligations and de-enrollment (eCFR)"
+      }
+    },
+    "cfr407": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.407",
+      "label": {
+        "en": "47 CFR 54.407, usage rule for free service (eCFR)"
+      }
+    },
+    "cfr408": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.408",
+      "label": {
+        "en": "47 CFR 54.408, minimum service standards (eCFR)"
+      }
+    },
+    "cfr410": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.410",
+      "label": {
+        "en": "47 CFR 54.410, eligibility determination and documents (eCFR)"
+      }
+    },
+    "hhsFpg": {
+      "url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+      "label": {
+        "en": "HHS ASPE, 2026 Poverty Guidelines"
+      }
+    },
+    "usacEligibility": {
+      "url": "https://www.usac.org/lifeline/consumer-eligibility/",
+      "label": {
+        "en": "USAC, Lifeline consumer eligibility and 2026 income table"
+      }
+    },
+    "usacMss": {
+      "url": "https://www.usac.org/lifeline/rules-and-requirements/minimum-service-standards/",
+      "label": {
+        "en": "USAC, Lifeline minimum service standards and support amounts"
+      }
+    },
+    "usacRecert": {
+      "url": "https://www.usac.org/lifeline/national-verifier/recertification/",
+      "label": {
+        "en": "USAC, National Verifier annual recertification"
+      }
+    },
+    "usacTribal": {
+      "url": "https://www.usac.org/lifeline/enhanced-tribal-benefit/",
+      "label": {
+        "en": "USAC, enhanced Tribal benefit and Link Up"
+      }
+    },
+    "usacHowNv": {
+      "url": "https://www.usac.org/lifeline/national-verifier/how-to-use-nv/",
+      "label": {
+        "en": "USAC, how to apply through the National Verifier"
+      }
+    },
+    "usacVerification": {
+      "url": "https://www.usac.org/lifeline/national-verifier/eligibility-verification/",
+      "label": {
+        "en": "USAC, automated eligibility checks by state"
+      }
+    },
+    "usacDocs": {
+      "url": "https://www.usac.org/lifeline/national-verifier/how-to-use-nv/resolve-application-errors/",
+      "label": {
+        "en": "USAC, documents accepted to resolve application errors"
+      }
+    },
+    "usacOptOut": {
+      "url": "https://www.usac.org/lifeline/national-verifier/how-to-use-nv/launches/national-verifier-opt-out-launch/",
+      "label": {
+        "en": "USAC, Oregon and Texas state application process"
+      }
+    },
+    "usacSca": {
+      "url": "https://www.usac.org/lifeline/safe-connections-act/",
+      "label": {
+        "en": "USAC, Safe Connections Act survivor benefit"
+      }
+    },
+    "usacAcp": {
+      "url": "https://www.usac.org/about/affordable-connectivity-program/",
+      "label": {
+        "en": "USAC, Affordable Connectivity Program (ended June 1, 2024)"
+      }
+    },
+    "usacCompanies": {
+      "url": "https://opendata.usac.org/Lifeline/Lifeline-Companies-Near-Me/kjtb-4uf7",
+      "label": {
+        "en": "USAC Open Data, Lifeline Companies Near Me (public domain)"
+      }
+    },
+    "usacDisbursements": {
+      "url": "https://opendata.usac.org/Lifeline/Lifeline-Disbursements/tfxa-gt3x",
+      "label": {
+        "en": "USAC Open Data, Lifeline Disbursements (CC0 public domain)"
+      }
+    },
+    "fccMssNotice": {
+      "url": "https://docs.fcc.gov/public/attachments/DA-26-796A1.pdf",
+      "label": {
+        "en": "FCC Wireline Competition Bureau, DA 26-796, minimum service standards and 2027 budget (July 29, 2026)"
+      }
+    },
+    "fccWaiver": {
+      "url": "https://docs.fcc.gov/public/attachments/DA-26-651A1.pdf",
+      "label": {
+        "en": "FCC Wireline Competition Bureau, DA 26-651, one-year pause of the voice-only phase-out (July 1, 2026)"
+      }
+    },
+    "fccLifelineArchive": {
+      "url": "https://web.archive.org/web/20261017115647/https://www.fcc.gov/lifeline-consumers",
+      "label": {
+        "en": "FCC, Lifeline Support for Affordable Communications (archived copy of October 17, 2026)"
+      }
+    },
+    "fccAcpArchive": {
+      "url": "https://web.archive.org/web/20261010115927/https://www.fcc.gov/acp",
+      "label": {
+        "en": "FCC, Affordable Connectivity Program page (archived copy of October 10, 2026)"
+      }
+    },
+    "cpucSheet": {
+      "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/about-cpuc/documents/transparency-and-reporting/fact_sheets/california-lifeline/lifeline_onesheet_051126.pdf",
+      "label": {
+        "en": "CPUC, California LifeLine fact sheet (May 2026)"
+      }
+    },
+    "cpucDecision": {
+      "url": "https://www.cpuc.ca.gov/news-and-updates/all-news/cpuc-updates-california-lifeline-to-increase-support-for-low-income-households",
+      "label": {
+        "en": "CPUC, California LifeLine update approved October 8, 2026"
+      }
+    },
+    "cpucStats": {
+      "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/communications-division/documents/lifeline/fact-sheets/lifeline-stat-sheet-051126.pdf",
+      "label": {
+        "en": "CPUC, California LifeLine participants by county"
+      }
+    },
+    "txLifelineArchive": {
+      "url": "https://web.archive.org/web/20260930112642/https://www.texaslifeline.org/",
+      "label": {
+        "en": "Texas Lifeline application site, archived copy of September 30, 2026"
+      }
+    },
+    "cfr401": {
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-54/subpart-E/section-54.401",
+      "label": {
+        "en": "47 CFR 54.401, Lifeline defined (eCFR)"
+      }
+    },
+    "usacContinued": {
+      "url": "https://www.usac.org/lifeline/national-verifier/continued-eligibility/",
+      "label": {
+        "en": "USAC, National Verifier continued eligibility"
+      }
+    }
+  }
+}

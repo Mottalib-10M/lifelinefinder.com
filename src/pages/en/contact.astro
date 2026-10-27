@@ -1,0 +1,24 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+import P from '../../data/params-2026.json';
+const lang = 'en';
+---
+<PageLayout title={`Contact ${SITE_NAMES[lang]}: a rule, a limit or a company list`} description="Write to US Lifeline when an income limit, a rule or a company listing looks wrong. We cannot process a Lifeline application: here is who can, and the official phone line." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>Email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. A person reads every message.</p>
+    <h2>Something on the site looks wrong</h2>
+    <p>Tell us the page, the figure or the rule, and the official text that says otherwise if you have it: an FCC order, a USAC page, a state commission notice. We read the source again, correct the data file and date the change on every page.</p>
+    <h2>Your application, your phone, your account</h2>
+    <p>We cannot see, file, speed up or cancel a Lifeline application, and we have no access to the National Verifier or to any company’s records. For an application or a recertification, the Lifeline Support Center run by USAC answers at {P.rules.supportCenterPhone}. For service, a phone or a bill, contact the company that serves you. Please never send us your Social Security number, your benefit letters or any other personal document.</p>
+    <h2>Using a checker on your own site</h2>
+    <p>Food banks, libraries, housing agencies and community groups can show the eligibility checker or the company finder in an iframe at no cost: see the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Updated on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-US')}</time>.</p>
+  </div>
+</PageLayout>

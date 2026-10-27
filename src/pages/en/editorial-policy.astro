@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+---
+<PageLayout title={`Editorial policy of ${SITE_NAMES[lang]}: sources and corrections`} description="Which FCC rules, USAC pages and data sets US Lifeline relies on, how limits and lists are checked, which sources it refuses and how a mistake is corrected and dated." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Editorial and corrections policy</h1>
+    <p>People use these pages to decide whether to apply for a discount they may need to stay reachable by a doctor, an employer or a caseworker. A wrong income limit can make an eligible family give up, and a wrong promise can send someone to a site that harvests personal data. So every limit, amount and date points back to the rule or the data it was read in.</p>
+    <h2>Who is responsible</h2><p>{AUTHOR_NAME}, reachable at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>What we read</h2>
+    <ul>
+      <li>Title 47 of the Code of Federal Regulations, Part 54, Subpart E, on the electronic CFR;</li>
+      <li>FCC orders and public notices on docs.fcc.gov, and the FCC’s consumer pages, read on archived copies when the live page refuses automated reading;</li>
+      <li>usac.org pages on eligibility, the National Verifier, recertification and minimum service standards, and USAC open data;</li>
+      <li>the HHS poverty guidelines, and state commission publications such as the California Public Utilities Commission fact sheets.</li>
+    </ul>
+    <h2>Sources we refuse</h2><p>Phone companies, enrollment sites, lead sellers and forums never supply a rule or a figure here. Company names appear only as USAC lists them, without links, ranking by offer or recommendation. Where an official text could not be read, the figure is left out rather than taken from an unofficial copy.</p>
+    <h2>Review cycle</h2><p>The income table is re-read when HHS publishes new poverty guidelines each January and USAC updates its table; the minimum service standards when the FCC publishes its yearly notice, by July 31; the company list and subscriber counts when the data script is run, by hand for now and monthly by a scheduled workflow once the site is online.</p>
+    <h2>Corrections</h2>
+    <ol><li>We open the source again.</li><li>We correct the parameter or data file and add an automated test for the case.</li><li>The site rebuilds and every page shows the new date.</li></ol>
+    <h2>Independence</h2><p>No company, government body or lead buyer pays for or reviews what is published here, and the site carries no affiliate link. See also the <a href={route('method', lang)}>method page</a>. Version of <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-US')}</time>.</p>
+  </div>
+</PageLayout>

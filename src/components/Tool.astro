@@ -1,0 +1,44 @@
+---
+/**
+ * Renders one tool with its page defaults: `elig` (props: state, size, income, program), `providers`
+ * (props: state), `recert`, `steps` (application timeline) or `mini:<spec>` from `lib/mini-specs.ts`.
+ */
+import EligibilityCheck from './calc/EligibilityCheck';
+import ProviderFinder from './calc/ProviderFinder';
+import RecertCalc from './calc/RecertCalc';
+import MiniSim from './calc/MiniSim';
+import Frise from './ui/Frise';
+import { route, hasRoute, type Locale } from '../i18n/routes';
+import { getSpec } from '../lib/mini-specs';
+import { dateL } from '../lib/format-l';
+import PV from '../data/providers.json';
+import P from '../data/params-2026.json';
+import type { ToolDef } from '../lib/guide-types';
+interface Props { tool: ToolDef; lang?: Locale; primary?: boolean; idPrefix?: string; seedKey?: string }
+const { tool, lang = 'en', primary = false, idPrefix } = Astro.props;
+const props = (tool.props ?? {}) as Record<string, any>;
+const kind = tool.kind;
+const mini = kind.startsWith('mini:') ? kind.slice(5) : null;
+const spec = mini ? getSpec(mini) : null;
+const href = spec?.ctaPage && hasRoute(spec.ctaPage, lang) ? route(spec.ctaPage, lang) : undefined;
+const numDefaults: Record<string, number> = {};
+for (const [k, v] of Object.entries(props)) if (typeof v === 'number') numDefaults[k] = v;
+const applyHref = hasRoute('how-to-get-a-free-government-phone', lang) ? route('how-to-get-a-free-government-phone', lang) : undefined;
+const pst = (props.state as string) ?? 'CA';
+const comp = ((PV.states as any)[pst]?.companies ?? []) as Array<{ n: string; t: string; p: string; w: string; z: number }>;
+const initial = { c: comp.map((c) => [c.n, c.t, c.p, c.w] as [string, string, string, string]), counts: comp.map((c) => c.z) };
+const R = P.rules;
+const steps = [
+  { id: 'apply', title: 'Apply on the National Verifier', detail: 'Online, by mail, or with a company’s agent in person. The databases answer at once when they find your benefit.', minDays: 0, maxDays: 0 },
+  { id: 'review', title: 'Document review, if asked', detail: `Online uploads are reviewed within minutes during support center hours; mailed papers take ${R.mailReviewBusinessDays[0]} to ${R.mailReviewBusinessDays[1]} business days.`, minDays: 0, maxDays: 14 },
+  { id: 'enroll', title: 'Choose a company and enroll', detail: 'The company enrolls you with your approved application. No official delay is set.', minDays: 0, maxDays: 0 },
+  { id: 'year', title: 'First year of service', detail: `Free service must be used at least once every ${R.nonUsageDays} days.`, minDays: 365, maxDays: 365 },
+  { id: 'recert', title: 'Recertification window', detail: `${R.recertWindowDays} days to answer, unless the automatic check renews you.`, minDays: R.recertWindowDays, maxDays: R.recertWindowDays },
+];
+const labels = { start: 'Date you apply', startHelp: 'Change it to your own date', end: 'Recertification done', between: 'between', and: 'and', today: 'Today', done: 'Done', current: 'Now', upcoming: 'Next', day: 'day', days: 'days', week: 'week', weeks: 'weeks', month: 'month', months: 'months', milestone: 'one step', caption: 'Lifeline from application to the first recertification, with the official time of each step' };
+---
+{kind === 'elig' && <EligibilityCheck client:load idPrefix={idPrefix ?? (primary ? 'el' : 'el2')} primary={primary} state={props.state ?? 'CA'} size={props.size ?? 3} income={props.income ?? 30000} program={props.program ?? 'none'} links={applyHref ? { apply: applyHref } : {}} />}
+{kind === 'providers' && <ProviderFinder client:load idPrefix={idPrefix ?? (primary ? 'pf' : 'pf2')} primary={primary} state={pst} initial={initial} readAt={dateL(PV.read_at)} />}
+{kind === 'recert' && <RecertCalc client:load idPrefix={idPrefix ?? (primary ? 'rc' : 'rc2')} primary={primary} />}
+{kind === 'steps' && <div data-chrome class="not-prose my-6" {...(primary ? {} : { 'data-simulateur-secondaire': '' })}><Frise client:visible steps={steps} labels={labels} locale="en-US" id={idPrefix ?? 'frise'} /></div>}
+{mini && <MiniSim client:load kind={mini} href={href} defaults={numDefaults} primary={primary} idPrefix={idPrefix ?? (primary ? 'p' : 'm')} />}

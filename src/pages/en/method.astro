@@ -1,0 +1,42 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { breadcrumbSchema, articleSchema } from '../../lib/seo';
+import { helpers } from '../../lib/helpers';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+const h = helpers(lang);
+const s = (k: Parameters<typeof h.src>[0], t: string) => h.src(k, t);
+---
+<PageLayout title="Method of US Lifeline: limits, rules and company data" description="How US Lifeline applies 47 CFR Part 54, which 2026 income table it uses, where the company lists and subscriber counts come from and how each date is computed." lang={lang} jsonLd={[articleSchema({ title: 'How eligibility, amounts and company lists are worked out', description: 'Method of US Lifeline', path: route('method', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'Method', path: route('method', lang) }])]} breadcrumbs={[{ label: 'Method' }]}>
+  <header class="mb-6"><p class="kicker">Method</p><h1 class="mt-0 text-3xl font-bold text-navy-900 md:text-4xl">How eligibility, amounts and company lists are worked out</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <p>Every page and every tool reads three data files: one of rules, limits and amounts, read on the sources below on {h.date(h.P.retrieved_at)}; one of approved companies by state and ZIP code; one of subscribers by state. No figure is typed into a page: when a source changes, the file changes and every page follows. Automated tests check the engine against figures read by hand in the official tables.</p>
+    <h2>1. Eligibility</h2>
+    <p>The checker applies <Fragment set:html={s('cfr409', '47 CFR 54.409')} />. A household qualifies when one member receives SNAP, Medicaid, Supplemental Security Income, Federal Public Housing Assistance or a Veterans or Survivors Pension, or when its gross income is at or below 135% of the federal poverty guidelines. On Tribal lands, Bureau of Indian Affairs General Assistance, Tribal TANF, Head Start (income-qualified households) and the Food Distribution Program on Indian Reservations also count. One benefit is allowed per household, as defined in <Fragment set:html={s('cfr400', '47 CFR 54.400')} />.</p>
+    <ul>
+      <li>Income limits: the <Fragment set:html={s('usacEligibility', 'USAC table')} /> of 135% of the 2026 <Fragment set:html={s('hhsFpg', 'HHS poverty guidelines')} />, with separate columns for Alaska and Hawaii. DC and the territories use the 48-state column. For households above eight people, the extra amount per person from the same table is added.</li>
+      <li>The result says “at or below” on the limit itself: a household exactly at the limit qualifies.</li>
+      <li>California runs its own LifeLine program with its own income table, read on the <Fragment set:html={s('cpucSheet', 'California Public Utilities Commission fact sheet')} />; the checker shows both answers for California.</li>
+      <li>Texas and Oregon run their own application instead of the National Verifier. The Texas form applies the same 135% test, as shown on an <Fragment set:html={s('txLifelineArchive', 'archived copy of the Texas Lifeline application site')} />, captured on September 30, 2026, because the live site refuses automated reading.</li>
+    </ul>
+    <h2>2. Amounts</h2>
+    <p>Under <Fragment set:html={s('cfr403', '47 CFR 54.403')} /> the federal support is {h.support('broadband')} a month for a service that meets the broadband minimum standard and {h.support('voice')} for a voice-only service, kept through {h.date(h.S.voiceOnlyUntil)} by the <Fragment set:html={s('fccWaiver', 'FCC Wireline Competition Bureau order of July 2026')} />. On Tribal lands, {h.money(h.S.tribalExtra)} more, up to {h.money(h.S.tribalMax)}. The minimum service standards come from the <Fragment set:html={s('usacMss', 'USAC page')} /> and the <Fragment set:html={s('fccMssNotice', 'FCC public notice')} /> that keeps them until {h.date(h.MSS.until)}.</p>
+    <h2>3. Approved companies</h2>
+    <p>The company finder and the state tables read the USAC open data set <Fragment set:html={s('usacCompanies', 'Lifeline Companies Near Me')} />, a public domain US government work: {h.num(h.providersRows)} rows read on {h.providersReadAt}, grouped by state and company. A company is listed in a ZIP code when USAC lists it there; it may not serve every address of that ZIP code. Companies are sorted by the number of ZIP codes listed, then by name. No company is ranked by its offer, recommended or linked.</p>
+    <h2>4. Subscribers</h2>
+    <p>The counts by state come from the USAC data set <Fragment set:html={s('usacDisbursements', 'Lifeline Disbursements')} />: the number of subscribers claimed by companies for the support month of {h.subsMonth}, read on {h.subsReadAt}. Companies may revise their claims for months afterwards, so these figures are the latest complete month, not a final count.</p>
+    <h2>5. Dates</h2>
+    <p>The recertification calendar adds a year to the enrollment date, then the {h.R.recertWindowDays}-day answer window that opens with USAC’s notice and the {h.R.deEnrollBusinessDays} business days before de-enrollment, from the <Fragment set:html={s('usacRecert', 'USAC recertification page')} /> and <Fragment set:html={s('cfr405', '47 CFR 54.405')} />. Business days skip weekends but not federal holidays, so a holiday can add a day. The non-usage counter applies the {h.R.nonUsageDays}-day rule and the {h.R.cureDays}-day notice of <Fragment set:html={s('cfr407', '47 CFR 54.407')} />.</p>
+    <h2>6. What the site does not do</h2>
+    <ul>
+      <li>It does not decide eligibility: only the National Verifier, or the state in Oregon and Texas, does.</li>
+      <li>It does not compare plan prices or phones: companies change them often and no official source publishes them.</li>
+      <li>It does not keep anything you type: the tools run in your browser.</li>
+    </ul>
+    <h2>7. Updates</h2>
+    <p>A script (scripts/update-data.py) re-reads both USAC data sets and stops with an error when the company list has changed, until a person has read the change. The update is run by hand for now; it becomes automatic, through a monthly scheduled workflow, once the site is online. Limits and amounts are re-read by hand when HHS, USAC or the FCC publish new figures.</p>
+    <p>Method version of <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-US')}</time>. A figure that looks wrong: <a href={route('contact', lang)}>contact</a>.</p>
+  </div>
+</PageLayout>
