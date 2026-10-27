@@ -14,7 +14,7 @@ import csv, io, json, os, sys, urllib.parse, urllib.request, datetime, collectio
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = 'https://opendata.usac.org/resource/'
-UA = {'User-Agent': 'us-lifeline data refresh (Radif Partners)', 'Accept-Encoding': 'identity'}
+UA = {'User-Agent': 'lifelinefinder.com data refresh (Radif Partners)', 'Accept-Encoding': 'identity'}
 
 def get(url):
     with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=300) as r:

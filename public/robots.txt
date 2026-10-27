@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://us-lifeline.example/sitemap-index.xml
+Sitemap: https://lifelinefinder.com/sitemap-index.xml

@@ -1,8 +1,8 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://us-lifeline.example";
-export const SITE_NAMES: Record<string, string> = {"en": "US Lifeline"};
+export const SITE_URL = "https://lifelinefinder.com";
+export const SITE_NAMES: Record<string, string> = {"en": "Lifeline Finder"};
 // Partie du nom affichée en couleur dans l'en-tête (RECETTE §10.3), « » pour aucune.
-export const BRAND_ACCENT = "";
+export const BRAND_ACCENT = "Finder";
 export const LANG_TAGS: Record<string, string> = {"en": "en-US"};
 export const OG_LOCALES: Record<string, string> = {"en": "en_US"};
 export const LOCALE_TAG = 'en-US';
@@ -18,7 +18,7 @@ export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners reads 
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["Lifeline eligibility rules in 47 CFR 54.409", "135% of the HHS Federal Poverty Guidelines", "Lifeline support amounts and the enhanced Tribal benefit", "The National Verifier and annual recertification", "The end of the Affordable Connectivity Program in 2024", "California LifeLine"]};
-export const CONTACT_EMAIL = "contact@us-lifeline.example";
+export const CONTACT_EMAIL = "contact@lifelinefinder.com";
 export const THEME_COLOR = '#166534';
 export const LOGO_SYMBOL = 'TEL';
 export const BING_VERIFY_CODE = '';
